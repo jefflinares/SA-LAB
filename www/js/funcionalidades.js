@@ -1,3 +1,6 @@
+
+var token = getToken();
+
 function add(){
 
 
