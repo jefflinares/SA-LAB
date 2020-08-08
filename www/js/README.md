@@ -1,6 +1,6 @@
 ##CREAR CONTACTO
 
-```
+```javascript
 function add(){
 ```
 
@@ -8,7 +8,7 @@ Esta función realiza una petición de tipo POST utilizando la libreria XMLHttpR
 
 recibe de parametro la URL de la api para agregar contactos.
 
-```
+```javascript
 var url = 'https://api.softwareavanzado.world/index.php?webserviceClient=administrator&webserviceVersion=1.0.0&option=contact&api=hal';
 ```
 
@@ -23,12 +23,12 @@ function listar(){
 ```
 Recibe un filtro de búsqueda por mi número de carnet: 201504448 
 
-```
+```javascript
 var url = 'https://api.softwareavanzado.world/index.php?webserviceClient=administrator&webserviceVersion=1.0.0&option=contact&api=hal&filter[search]=201504448';
 ```
 
 Esta función evalua el tipo de respuesta recibida de la api y muestra el mensaje en un alert.
 
-```
+```javascript
 function showHeaderMessage(){
 ```

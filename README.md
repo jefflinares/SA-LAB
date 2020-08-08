@@ -17,8 +17,8 @@ En el explorador de archivos abrir el archivo index.html ubicado en la carpeta w
 
 Visualizará 2 componentes.
 
-1.  [Crear Contacto](#Crear Contacto)
-2.  [Listar Contactos](#Listar Contactos)
+1.  [Crear Contacto](#CrearContacto)
+2.  [Listar Contactos](#ListarContactos)
 
 <h2 align="center">Crear Contacto</h2>
 
