@@ -29,3 +29,10 @@ Le permitirá agregar un contacto, le mostrara un campo en el cuál ingresará e
 Esta funcionalidad le permitirá listar los contactos que cuenten en el nombre el dato='201504448'
 
 La información del código escrito en javascript lo puede visitar [aquí](www/js/README.md).
+
+##ALLOW Access-Control-Allow-Origin
+
+se necesita permisos para desbloquear las políticas de CORS, se recomienda instalar esta extensión en Google Chrome: Allow CORS: Access-Control-Allow-Origin, una vez instalada este lista para funcionar.
+
+
+

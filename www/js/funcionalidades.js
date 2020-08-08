@@ -4,7 +4,7 @@ function add(){
     var url = 'https://api.softwareavanzado.world/index.php?webserviceClient=administrator&webserviceVersion=1.0.0&option=contact&api=hal';
 
     var req = new XMLHttpRequest();
-    req.open("POST",url);
+    req.open("POST",url,true);
     req.setRequestHeader('Content-Type', 'application/json',true);
     
     var contac_name = document.getElementById('contact_name').value
