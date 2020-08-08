@@ -24,6 +24,7 @@ function add(){
                 respuesta = JSON.parse(req.responseText);
                 console.log("id: "+respuesta.id);
                 document.getElementById('contact_name').value = ""
+                alert('Contacto creado, con el id: '+respuesta.id)
             }catch(err){
                 console.log(err);
             }
