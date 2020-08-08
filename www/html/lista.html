@@ -27,7 +27,7 @@
       href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="css/css_cards.css" />
+    <link rel="stylesheet" href="../css/css_cards.css" />
     <script src="https://kit.fontawesome.com/a076d05399.js"></script>
     <script src="https://code.jquery.com/jquery-1.9.1.js"></script>
     <script
@@ -64,7 +64,7 @@
       href="https://netdna.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
     />
 
-    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="../css/style.css" />
     <!-- custom JS -->
 
     <style>
@@ -75,8 +75,10 @@
         margin: 150px auto;
       }
     </style>
+      <!-- Mis scripts -->
+    <script src="../js/funcionalidades.js"></script>
   </head>
-  <body>
+  <body onload="listar()">
     <main>
       <div class="container-fluid">
         <div class="row">
@@ -96,13 +98,25 @@
                     <i class="fa fa-home" style="color: #16a085;"></i>
                   </button>
                 </li>
+                <li class="nav-item">
+                  <button
+                    onclick="location.href='agregar.html';"
+                    value="AGREGAR CONTACTO"
+                    class="nav-link"
+                    data-toggle="tab"
+                    aria-selected="false"
+                  >
+                    AGREGAR
+                    <i class="fa fa-user" style="color: #16a085;"></i>
+                  </button>
+                </li>
               </ul>
             </div>
           </nav>
         </div>
       </div>
       <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="h3 mb-0 text-gray-800">Monitor de PROCESOS</h1>
+        <h1 class="h3 mb-0 text-gray-800">LISTA DE CONTACTOS</h1>
       </div>
 
       <div class="row">
@@ -117,28 +131,19 @@
                   <table class="table table-sm table-dark">
                     <thead>
                       <tr>
-                        <th scope="col">Procesos En Ejecucion</th>
-                        <th scope="col">Procesos Suspendidos</th>
-                        <th scope="col">Procesos Detenidos</th>
-                        <th scope="col">Procesos Zombie</th>
-                        <th scope="col">Total Procesos</th>
+                        <th scope="col">ID</th>
+                        <th scope="col">NOMBRE</th>
                       </tr>
                     </thead>
-                    <tbody>
-                      <tr>
-                        <td id="td_1"></td>
-                        <td id="td_2"></td>
-                        <td id="td_3"></td>
-                        <td id="td_4"></td>
-                        <td id="td_5"></td>
-                      </tr>
+                    <tbody id='list_table'>
+                      
                     </tbody>
                   </table>
                 </center>
               </div>
               <div class="wrimagecard-topimage_title">
                 <h4>
-                  Info Procesos
+                  Jefferson Linares - 201504448
                   <i class="fa fa-cogsstyle" color:#16A085></i>
                 </h4>
               </div>
