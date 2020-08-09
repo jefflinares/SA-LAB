@@ -3,7 +3,7 @@ Software Avanzado, Jefferson Linares, 201504448
 
 TAREA 1 
 
-Cliente que utiliza la api: https://api.softwareavanzado.world/index.php?webserviceClient=administrator&webserviceVersion=1.0.0&option=contact&api=hal&format=doc#create para la creación de contactos, y también para listar los contactos creados.
+Cliente que utiliza la api- WSDL:   https://api.softwareavanzado.world/index.php?webserviceClient=administrator&webserviceVersion=1.0.0&option=contact&api=soap&wsdl  para la creación de contactos, y también para listar los contactos creados, utilizando SOAP como protocolo de comunicación con una atenticación básica 
 
 ## Contenido
 
@@ -28,4 +28,4 @@ Le permitirá agregar un contacto, le mostrara un campo en el cuál ingresará e
 
 Esta funcionalidad le permitirá listar los contactos que cuenten en el nombre el dato='201504448'
 
-La información del código escrito en javascript lo puede visitar [aquí](www/js/README.md).
+La información del código escrito en javascript lo puede visitar [aquí](js/README.md).

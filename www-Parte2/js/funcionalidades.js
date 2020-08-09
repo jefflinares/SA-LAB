@@ -1,13 +1,23 @@
-
-var token = getToken();
-
 function add(){
-
-
-    var url = 'https://api.softwareavanzado.world/index.php?webserviceClient=administrator&webserviceVersion=1.0.0&option=contact&api=hal';
+    /*
+    let access_token = localStorage.getItem('access_token');
+    if(!access_token){
+       alert('no guardo en el local storage');
+       getToken();
+    }
+    else{
+        if(!tokenIsValid())
+        {
+            getToken();
+        }
+    }
+    
+    const url_cors = "https://cors-anywhere.herokuapp.com/";
+    var url = url_cors+'https://api.softwareavanzado.world/index.php?webserviceClient=administrator&webserviceVersion=1.0.0&option=contact&api=hal';
 
     var req = new XMLHttpRequest();
     req.open("POST",url);
+    req.setRequestHeader('Authorization', 'Bearer ' + access_token);
     req.setRequestHeader('Content-Type', 'application/json',true);
     
     var contac_name = document.getElementById('contact_name').value
@@ -37,7 +47,7 @@ function add(){
         
     }
     req.send(text);
-
+*/
 }
 
 function showHeaderMessage(status)
@@ -54,16 +64,30 @@ function showHeaderMessage(status)
 
 function listar()
 {
+    /*
+    const url_cors = "https://cors-anywhere.herokuapp.com/";
+    let access_token = localStorage.getItem('access_token');
+    if(!access_token){
+       alert('no guardo en el local storage');
+       getToken();
+    }
+    else{
+        if(!tokenIsValid())
+        {
+            getToken();
+        }
+    }
+
     var list_table = document.getElementById('list_table');
     if(!list_table){
         alert('no se encontro la tabla')
     }
     list_table.innerHTML = '';
-  
 
-    var url = 'https://api.softwareavanzado.world/index.php?webserviceClient=administrator&webserviceVersion=1.0.0&option=contact&api=hal&filter[search]=201504448';
+    var url = url_cors+'https://api.softwareavanzado.world/index.php?webserviceClient=administrator&webserviceVersion=1.0.0&option=contact&api=hal&filter[search]=201504448';
     var req = new XMLHttpRequest();
     req.open("GET",url,true);
+    req.setRequestHeader('Authorization', 'Bearer ' + access_token);
     //req.setRequestHeader('Content-Type', 'application/json',true);
 
     req.onreadystatechange = function() {
@@ -92,7 +116,6 @@ function listar()
     }
     req.send(null);
 
-
+*/
     
 }
-
