@@ -36,6 +36,7 @@ function add(){
                 respuesta =req.responseXML;
                 alert('Contacto creado');
                 console.log(respuesta);
+                document.getElementById('contact_name').value = ""
             }catch(err){
                 console.log(err);
             }
@@ -74,6 +75,7 @@ function listar()
                 '<soap:Header/>'+
                     '<soap:Body>'+
                         '<adm:readList>'+
+                            '<limit>50</limit>'+
                             '<filterSearch>201504448</filterSearch>'+
                        '</adm:readList>'+
                     '</soap:Body>'+
@@ -84,15 +86,15 @@ function listar()
             try{
                 respuesta = req.responseXML;
                 let lista_contactos = respuesta.getElementsByTagName("list")[0];
-                console.log(lista_contactos)
+                //console.log(lista_contactos)
                 if(lista_contactos)
                 {
-                    console.log('entrara a la lista de contactos: '+lista_contactos.childNodes.length)
+                    //console.log('entrara a la lista de contactos: '+lista_contactos.childNodes.length)
                     
                     for(let i = 0; i < lista_contactos.childNodes.length; i++)
                     {
                         let contacto = lista_contactos.childNodes[i];    
-                        console.log(contacto)
+                       // console.log(contacto)
                         let id = contacto.getElementsByTagName('id')[0].firstChild.nodeValue;
                         let name_ = contacto.getElementsByTagName('name')[0].firstChild.nodeValue
                         list_table.innerHTML +='<tr>';
