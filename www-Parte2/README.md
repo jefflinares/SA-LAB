@@ -1,19 +1,19 @@
 # SA-LAB
 Software Avanzado, Jefferson Linares, 201504448
 
-TAREA 1 
+Practica 2 - Parte 2
 
 Cliente que utiliza la api- WSDL:   https://api.softwareavanzado.world/index.php?webserviceClient=administrator&webserviceVersion=1.0.0&option=contact&api=soap&wsdl  para la creación de contactos, y también para listar los contactos creados, utilizando SOAP como protocolo de comunicación con una atenticación básica 
 
 ## Contenido
 
-EN LA CARPETA WWWW encontrará diferentes carpetas en las cuáles si desea iniciar la aplicación basta con clonar este repositorio:
+EN LA CARPETA wwww-Parte2 encontrará diferentes carpetas en las cuáles si desea iniciar la aplicación basta con clonar este repositorio:
 
 ```
 git clone https://github.com/jefflinares/SA-LAB.git
 ```
 
-En el explorador de archivos abrir el archivo index.html ubicado en la carpeta www/html/index.html
+En el explorador de archivos abrir el archivo index.html ubicado en la carpeta www-Parte1/html/index.html
 
 Visualizará 2 componentes.
 

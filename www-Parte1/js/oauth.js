@@ -28,6 +28,9 @@ function getToken(){
                 respuesta = JSON.parse(req.responseText);
                 console.log('Acces_Token: '+respuesta.access_token);
                 localStorage.setItem('access_token',respuesta.access_token);
+                localStorage.setItem('dia',fecha.getDay());
+                localStorage.setItem('mes',fecha.getMonth());
+                localStorage.setItem('anio',fecha.getFullYear());
                 //vamos a calcular el tiempo en el que expira la hora a partir de aca
                 try {
                     var expira_en = Number(respuesta.expires_in);
@@ -40,6 +43,7 @@ function getToken(){
                             expira_en += fecha.getHours();
                             localStorage.setItem('expire_hour',expira_en);
                             localStorage.setItem('expire_minute', fecha.getMinutes());
+                            
                         }else{
                             //decimales 1.5 horas por ejemplo
                             let horas = expira_en - (expira_en % 1) + fecha.getHours()
@@ -56,6 +60,7 @@ function getToken(){
                         }
                         
                     }
+                    
 
                 } catch (error) {
                     console.log('fallo el parseo catch ');
@@ -78,13 +83,30 @@ function tokenIsValid()
 {
     
     let fecha_actual = new Date();
-    if(fecha_actual.getHours() >= Number(localStorage.getItem('expire_hour')) && fecha_actual.getMinutes() >= Number(localStorage.getItem('expire_minute')))
-    {
-        console.log('Token inválido');
+    try{
+        let dia = Number(localStorage.getItem('dia'));
+        let mes = Number(localStorage.getItem('mes'));
+        let anio = Number(localStorage.getItem('anio'));
+        if(!dia)
+        {
+            console.log('Token vencido')
+            return false;
+        }
+        console.log(dia);
+        
+        if( ( dia < fecha_actual.getDay() && mes < fecha_actual.getMonth() && anio < fecha_actual.getFullYear() ) || (fecha_actual.getHours() > Number(localStorage.getItem('expire_hour')) ) || ( fecha_actual.getHours() == Number(localStorage.getItem('expire_hour'))  && fecha_actual.getMinutes() > Number(localStorage.getItem('expire_minute'))) )
+        {
+            console.log('Token inválido');
+            return false;
+        }
+        console.log('Token Valido:\nHora Actual: '+fecha_actual.getHours()+":"+fecha_actual.getMinutes()+"\n");
+        console.log('Hora Vencimiento: '+localStorage.getItem('expire_hour')+":"+localStorage.getItem('expire_minute'));
+        return true;
+    }
+    catch(exception){
+        console.log(exception);
         return false;
     }
-    console.log('Token Valido:\nHora Actual: '+fecha_actual.getHours()+":"+fecha_actual.getMinutes()+"\n");
-    console.log('Hora Vencimiento: '+localStorage.getItem('expire_hour')+":"+localStorage.getItem('expire_minute'));
-    return true;
+   
 
 }

@@ -1,24 +1,13 @@
+
+
 function add(){
-    /*
-    let access_token = localStorage.getItem('access_token');
-    if(!access_token){
-       alert('no guardo en el local storage');
-       getToken();
-    }
-    else{
-        if(!tokenIsValid())
-        {
-            getToken();
-        }
-    }
-    
     const url_cors = "https://cors-anywhere.herokuapp.com/";
-    var url = url_cors+'https://api.softwareavanzado.world/index.php?webserviceClient=administrator&webserviceVersion=1.0.0&option=contact&api=hal';
+    const url = url_cors+'https://api.softwareavanzado.world/administrator/index.php?webserviceClient=administrator&webserviceVersion=1.0.0&option=contact&api=soap';
 
     var req = new XMLHttpRequest();
     req.open("POST",url);
-    req.setRequestHeader('Authorization', 'Bearer ' + access_token);
-    req.setRequestHeader('Content-Type', 'application/json',true);
+    req.setRequestHeader('Authorization', 'Basic ' + btoa("sa:usac"));
+    req.setRequestHeader('Content-Type', 'text/xml',true);
     
     var contac_name = document.getElementById('contact_name').value
 
@@ -27,17 +16,26 @@ function add(){
         alert('Por favor ingrese un nombre válido');
         return;
     }
-    var text = JSON.stringify({"name":contac_name});
-    var respuesta;
+    var xml = '<?xml version="1.0" encoding="utf-8"?>' +
+    '<soap:Envelope xmlns:soap="http://www.w3.org/2003/05/soap-envelope" xmlns:adm="https://api.softwareavanzado.world/media/redcore/webservices/joomla/administrator.contact.1.0.0.wsdl">'+
+        '<soap:Header/>'+
+            '<soap:Body>'+
+                '<adm:create>'+
+                    '<name>'+contac_name+'</name>'+
+                '</adm:create>'+
+            '</soap:Body>'+
+        '</soap:Envelope>';
+    
+    
+        var respuesta;
     
     req.onreadystatechange = function() {
-        if(req.readyState == 4 && req.status == 201) { 
+        if(req.readyState == 4 && req.status == 200) { 
             //req.responseText;
             try{
-                respuesta = JSON.parse(req.responseText);
-                console.log("id: "+respuesta.id);
-                document.getElementById('contact_name').value = ""
-                alert('Contacto creado, con el id: '+respuesta.id)
+                respuesta =req.responseXML;
+                alert('Contacto creado');
+                console.log(respuesta);
             }catch(err){
                 console.log(err);
             }
@@ -46,8 +44,8 @@ function add(){
         showHeaderMessage(req.status);
         
     }
-    req.send(text);
-*/
+    req.send(xml);
+
 }
 
 function showHeaderMessage(status)
@@ -64,46 +62,47 @@ function showHeaderMessage(status)
 
 function listar()
 {
-    /*
     const url_cors = "https://cors-anywhere.herokuapp.com/";
-    let access_token = localStorage.getItem('access_token');
-    if(!access_token){
-       alert('no guardo en el local storage');
-       getToken();
-    }
-    else{
-        if(!tokenIsValid())
-        {
-            getToken();
-        }
-    }
+    const url = url_cors+'https://api.softwareavanzado.world/administrator/index.php?webserviceClient=administrator&webserviceVersion=1.0.0&option=contact&api=soap';
 
-    var list_table = document.getElementById('list_table');
-    if(!list_table){
-        alert('no se encontro la tabla')
-    }
-    list_table.innerHTML = '';
-
-    var url = url_cors+'https://api.softwareavanzado.world/index.php?webserviceClient=administrator&webserviceVersion=1.0.0&option=contact&api=hal&filter[search]=201504448';
     var req = new XMLHttpRequest();
-    req.open("GET",url,true);
-    req.setRequestHeader('Authorization', 'Bearer ' + access_token);
-    //req.setRequestHeader('Content-Type', 'application/json',true);
-
+    req.open("POST",url);
+    req.setRequestHeader('Authorization', 'Basic ' + btoa("sa:usac"));
+    req.setRequestHeader('Content-Type', 'text/xml',true);
+    
+    var xml  = '<soap:Envelope xmlns:soap="http://www.w3.org/2003/05/soap-envelope" xmlns:adm="https://api.softwareavanzado.world/media/redcore/webservices/joomla/administrator.contact.1.0.0.wsdl">'+
+                '<soap:Header/>'+
+                    '<soap:Body>'+
+                        '<adm:readList>'+
+                            '<filterSearch>201504448</filterSearch>'+
+                       '</adm:readList>'+
+                    '</soap:Body>'+
+                '</soap:Envelope>';
     req.onreadystatechange = function() {
-        if(req.readyState == 4 && req.status == 200) { 
+        if(req.readyState == req.DONE && req.status === 200) { 
             //req.responseText;
             try{
-                respuesta = JSON.parse(req.responseText);
-                
-                if(respuesta._embedded.item)
+                respuesta = req.responseXML;
+                let lista_contactos = respuesta.getElementsByTagName("list")[0];
+                console.log(lista_contactos)
+                if(lista_contactos)
                 {
-                    respuesta._embedded.item.forEach(contact => {
+                    console.log('entrara a la lista de contactos: '+lista_contactos.childNodes.length)
+                    
+                    for(let i = 0; i < lista_contactos.childNodes.length; i++)
+                    {
+                        let contacto = lista_contactos.childNodes[i];    
+                        console.log(contacto)
+                        let id = contacto.getElementsByTagName('id')[0].firstChild.nodeValue;
+                        let name_ = contacto.getElementsByTagName('name')[0].firstChild.nodeValue
                         list_table.innerHTML +='<tr>';
-                        list_table.innerHTML += '<td>'+contact.id+'</td>' +
-                                                '<td>'+contact.name+'</td>';
+                        
+                        list_table.innerHTML += '<td>'+id+'</td>' +
+                                                '<td>'+name_+'</td>';
                         list_table.innerHTML += '</tr>\n';
-                    });
+                        
+                    }
+
                 }
                
             }catch(err){
@@ -114,8 +113,8 @@ function listar()
         showHeaderMessage(req.status);
         
     }
-    req.send(null);
+    req.send(xml);
 
-*/
+
     
 }
