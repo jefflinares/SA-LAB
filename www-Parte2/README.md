@@ -13,7 +13,7 @@ EN LA CARPETA wwww-Parte2 encontrará diferentes carpetas en las cuáles si dese
 git clone https://github.com/jefflinares/SA-LAB.git
 ```
 
-En el explorador de archivos abrir el archivo index.html ubicado en la carpeta www-Parte1/html/index.html
+En el explorador de archivos abrir el archivo index.html ubicado en la carpeta www-Parte2/html/index.html
 
 Visualizará 2 componentes.
 
